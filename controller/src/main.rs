@@ -87,6 +87,7 @@ use crate::{
         TriggerBot,
         WebRadar,
     },
+    offsets::setup_runtime_offset_provider,
     settings::save_app_settings,
     view::LocalCrosshair,
     web_radar_server::{
@@ -100,6 +101,7 @@ mod cache;
 mod class_name_cache;
 mod enhancements;
 mod map;
+mod offsets;
 mod settings;
 mod utils;
 mod view;
