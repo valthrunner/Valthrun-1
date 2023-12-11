@@ -103,7 +103,7 @@ pub async fn run_server() -> Result<(), anyhow::Error> {
             .route("/ws", web::get().to(ws))
             .service(actix_files::Files::new("/", "./web_radar_server").index_file("index.html"))
     })
-    .bind("0.0.0.0:54132")?
+    .bind("0.0.0.0:51142")?
     .run()
     .await?;
 
