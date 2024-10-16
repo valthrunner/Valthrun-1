@@ -36,6 +36,9 @@ pub use player::*;
 mod trigger;
 pub use trigger::*;
 
+mod aimbot;
+pub use aimbot::*;
+
 mod spectators_list;
 pub use spectators_list::*;
 

@@ -90,6 +90,7 @@ use windows::{
 
 use crate::{
     enhancements::{
+        Aimbot,
         AntiAimPunsh,
         BombInfoIndicator,
         PlayerESP,
@@ -657,6 +658,7 @@ fn main_overlay() -> anyhow::Result<()> {
             Rc::new(RefCell::new(BombInfoIndicator::new())),
             Rc::new(RefCell::new(TriggerBot::new())),
             Rc::new(RefCell::new(GrenadeHelper::new())),
+            Rc::new(RefCell::new(Aimbot::new())),
         ],
 
         last_total_read_calls: 0,

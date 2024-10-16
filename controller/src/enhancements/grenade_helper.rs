@@ -87,10 +87,6 @@ pub enum StateGrenadeHelperPlayerLocation {
 impl State for StateGrenadeHelperPlayerLocation {
     type Parameter = ();
 
-    fn cache_type() -> StateCacheType {
-        StateCacheType::Volatile
-    }
-
     fn create(states: &StateRegistry, _param: Self::Parameter) -> anyhow::Result<Self> {
         let entities = states.resolve::<EntitySystem>(())?;
         let class_name_cache = states.resolve::<ClassNameCache>(())?;
@@ -134,6 +130,10 @@ impl State for StateGrenadeHelperPlayerLocation {
             eye_position: local_position + DEFAULT_EYE_HEIGHT,
             eye_direction: eye_angles,
         })
+    }
+
+    fn cache_type() -> StateCacheType {
+        StateCacheType::Volatile
     }
 }
 
@@ -334,11 +334,20 @@ impl Enhancement for GrenadeHelper {
                         )
                         .position_pivot([0.0, 0.5])
                         .no_decoration()
-                        .draw_background(true)
+                        .draw_background(false)
+                        .no_inputs()
+                        .always_auto_resize(true)
                         .begin()
                     {
                         ui.text_colored(color.as_f32(), &grenade.name);
                         ui.text_colored(color.as_f32(), &grenade.description);
+                        let grenade_display_names = grenade
+                            .grenade_types
+                            .iter()
+                            .map(|value| value.display_name())
+                            .collect::<Vec<_>>();
+
+                        ui.text_colored(color.as_f32(), grenade_display_names.join(", "));
                     }
                 }
             }
